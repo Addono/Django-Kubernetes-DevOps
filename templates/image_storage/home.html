@@ -1,0 +1,55 @@
+{% extends 'image_storage/base.html' %}
+{% load thumbnail %}
+
+{% block title %}Home{% endblock %}
+{% block body %}
+    <main role="main">
+
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">HTTP2</h1>
+                <p class="lead text-muted">Just a demo environment to show HTTP2 functionality within a user environment.</p>
+                <p>
+                    <a href="{% url 'admin:index' %}" class="btn btn-primary my-2">Admin</a>
+                    <a href="{% url 'admin:image_storage_image_add' %}" class="btn btn-secondary my-2">New Image <i class="fas fa-plus-circle"></i></a>
+                </p>
+            </div>
+        </section>
+
+      <div class="album py-5 bg-light">
+        <div class="container">
+
+          <div class="row">
+              {% if not images %}
+                <div class="alert alert-dark" role="alert">
+                    No images added yet, go to the admin page and add some!
+                </div>
+              {% else %}
+                  {% for i in images %}
+              <div class="col-md-4">
+                  <div class="card mb-4 shadow-sm">
+                    <img class="card-img-top" src="{% thumbnail i.image "300x225" crop="center" %}" alt="Card image cap">
+                    <div class="card-body">
+                      <p class="card-text">{{ i.title }}</p>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                {% for tag in i.tags.all %}
+                                    <a href="#" class="btn btn-sm btn-outline-dark">{{ tag.name }}</a>
+                                {% endfor %}
+                              <a href="{% url 'admin:image_storage_image_change' i.id %}" class="btn btn-sm btn-outline-secondary"><i class="far fa-edit"></i></a>
+                            </div>
+{#                            <small class="text-muted"></small>#}
+                          </div>
+                    </div>
+                  </div>
+              </div>
+              {% endfor %}
+          {% endif %}
+
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+{% endblock %}
