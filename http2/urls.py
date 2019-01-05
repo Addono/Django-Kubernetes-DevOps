@@ -20,7 +20,10 @@ from django.urls import path
 from http2 import settings
 from image_storage import views
 
-urlpatterns = [
+# Note: Static URLs are included, not efficient enough for production use cases.
+urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\
+  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)\
+  + [
     path('admin/', admin.site.urls),
     path('', views.home)
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
