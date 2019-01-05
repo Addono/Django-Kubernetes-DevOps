@@ -56,8 +56,7 @@ ROOT_URLCONF = 'http2.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,14 +74,29 @@ WSGI_APPLICATION = 'http2.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
+if 'DATABASE_URL' in os.environ:
+    user_pass, hostname_port_name = os.getenv('DATABASE_URL').lstrip("postgres://").split("@", 1)
+    user, password = user_pass.split(":", 1)
+    hostname, port_name = hostname_port_name.split(":", 1)
+    port, name = port_name.split("/", 1)
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': name,
+            'USER': user,
+            'PASSWORD': password,
+            'HOST': hostname,
+            'PORT': port,
+        }
     }
-}
-
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

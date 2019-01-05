@@ -47,7 +47,7 @@ variables:
   POSTGRES_USER: user
   POSTGRES_PASSWORD: testing-password
   POSTGRES_ENABLED: "true"
-  POSTGRES_DB: $CI_ENVIRONMENT_SLUG
+  POSTGRES_DB: django
 
   KUBERNETES_VERSION: 1.10.9
   HELM_VERSION: 2.11.0
@@ -97,6 +97,8 @@ test:
     - postgres:latest
   only:
     - branches
+  variables:
+    POSTGRES_ENABLED: "False"
   except:
     variables:
       - $TEST_DISABLED
