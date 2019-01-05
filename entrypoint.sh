@@ -9,6 +9,8 @@ tail -n 0 -f ./logs/gunicorn*.log &
 
 export DJANGO_SETTINGS_MODULE=http2.settings
 
+exec python manage.py migrate
+
 exec gunicorn http2.wsgi:application \
     --name projectx_django \
     --bind 0.0.0.0:5000 \
