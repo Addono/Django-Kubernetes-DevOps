@@ -74,14 +74,14 @@ WSGI_APPLICATION = 'http2.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-if os.environ.get('POSTGRES_ENABLED', 'false').lower() == 'true':
+if 'DATABASE_URL' in os.environ:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.getenv('POSTGRES_DB', 'django'),
-            'USER': os.getenv('POSTGRES_USER', 'user'),
-            'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'testing-password'),
-            'HOST': os.getenv('DATABASE_URL', 'localhost'),
+            'NAME': 'django',
+            'USER': 'user',
+            'PASSWORD': 'testing-password',
+            'HOST': os.getenv('DATABASE_URL'),
             'PORT': '',
         }
     }
