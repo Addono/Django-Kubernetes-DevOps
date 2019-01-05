@@ -44,6 +44,7 @@ variables:
   # AUTO_DEVOPS_DOMAIN is the application deployment domain and should be set as a variable at the group or project level.
   AUTO_DEVOPS_DOMAIN: kn.gc.aknapen.nl
 
+  DB_INITIALIZE: python manage.py migrate
   DB_MIGRATE: python manage.py migrate
 
   POSTGRES_USER: user
