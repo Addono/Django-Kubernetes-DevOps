@@ -24,5 +24,4 @@ RUN python /code/manage.py collectstatic --noinput
 # Install dependencies
 RUN pip install -r /code/requirements.txt
 
-COPY ./entrypoint.sh /
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/code/entrypoint.sh"]
