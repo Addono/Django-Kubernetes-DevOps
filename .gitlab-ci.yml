@@ -47,7 +47,6 @@ variables:
   POSTGRES_USER: user
   POSTGRES_PASSWORD: testing-password
   POSTGRES_ENABLED: "true"
-  POSTGRES_DB: django
 
   KUBERNETES_VERSION: 1.10.9
   HELM_VERSION: 2.11.0
