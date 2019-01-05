@@ -22,4 +22,5 @@ RUN pip install -Ur requirements.txt
 # Collect our static media.
 RUN python /code/manage.py collectstatic --noinput
 
+RUN chmod 777 /code/entrypoint.sh
 ENTRYPOINT ["/code/entrypoint.sh"]
