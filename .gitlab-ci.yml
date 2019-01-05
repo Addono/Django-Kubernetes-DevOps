@@ -55,6 +55,8 @@ variables:
   DOCKER_DRIVER: overlay2
 
   CODE_QUALITY_DISABLED: "true"
+  DEPENDENCY_SCANNING_DISABLED: "true"
+  LICENSE_MANAGEMENT_DISABLED: "true"
 
 stages:
   - build
