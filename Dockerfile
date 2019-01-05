@@ -8,20 +8,18 @@ MAINTAINER Adriaan Knapen <hi@aknapen.nl>
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+# Install non-application specific requirements
+RUN pip install -U pip gunicorn
+
 # Copy all our files into the image.
 RUN mkdir /code
 WORKDIR /code
 COPY . /code/
 
 # Install our requirements.
-RUN pip install -U pip
 RUN pip install -Ur requirements.txt
-RUN pip install gunicorn
 
 # Collect our static media.
 RUN python /code/manage.py collectstatic --noinput
-
-# Install dependencies
-RUN pip install -r /code/requirements.txt
 
 ENTRYPOINT ["/code/entrypoint.sh"]

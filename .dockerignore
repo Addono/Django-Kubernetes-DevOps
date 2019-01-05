@@ -1,3 +1,9 @@
+Dockerfile
+.dockerignore
+.gitignore
+.git
+.gitlab-ci.yml
+
 .idea/
 venv/
 /static/
