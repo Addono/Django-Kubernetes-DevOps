@@ -53,8 +53,6 @@ variables:
   HELM_VERSION: 2.11.0
 
   DOCKER_DRIVER: overlay2
-  CONTAINER_TEST_IMAGE: registry.gitlab.com/addono/elec-e7320-http2:$CI_BUILD_REF_NAME
-  CONTAINER_RELEASE_IMAGE: registry.gitlab.com/addono/e7320-http2:latest
 
   CODE_QUALITY_DISABLED: "true"
 
@@ -74,15 +72,13 @@ stages:
   - cleanup
 
 build:
-  image: docker:git
-  services:
-    - docker:stable-dind
-  before_script:
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
   stage: build
+  image: docker:stable-git
+  services:
+  - docker:stable-dind
   script:
-    - docker build -t $CONTAINER_TEST_IMAGE .
-    - docker push $CONTAINER_TEST_IMAGE
+    - setup_docker
+    - build
   only:
     - branches
 
