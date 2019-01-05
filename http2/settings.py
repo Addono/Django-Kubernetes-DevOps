@@ -75,14 +75,19 @@ WSGI_APPLICATION = 'http2.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 if 'DATABASE_URL' in os.environ:
+    user_pass, hostname_port_name = os.getenv('DATABASE_URL').lstrip("postgres://").split("@", 1)
+    user, password = user_pass.split(":", 1)
+    hostname, port_name = hostname_port_name.split(":", 1)
+    port, name = port_name.split("/", 1)
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'django',
-            'USER': 'user',
-            'PASSWORD': 'testing-password',
-            'HOST': os.getenv('DATABASE_URL'),
-            'PORT': '',
+            'NAME': name,
+            'USER': user,
+            'PASSWORD': password,
+            'HOST': hostname,
+            'PORT': port,
         }
     }
 else:
