@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'http2.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-if (os.environ.get('POSTGRES_ENABLED')):
+if os.environ.get('POSTGRES_ENABLED') == "True":
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
