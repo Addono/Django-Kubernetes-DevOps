@@ -53,8 +53,8 @@ variables:
   HELM_VERSION: 2.11.0
 
   DOCKER_DRIVER: overlay2
-  CONTAINER_TEST_IMAGE: registry.gitlab.com/Addono/e7320-http2:$CI_BUILD_REF_NAME
-  CONTAINER_RELEASE_IMAGE: registry.gitlab.com/Addono/e7320-http2:latest
+  CONTAINER_TEST_IMAGE: registry.gitlab.com/addono/elec-e7320-http2:$CI_BUILD_REF_NAME
+  CONTAINER_RELEASE_IMAGE: registry.gitlab.com/addono/e7320-http2:latest
 
   CODE_QUALITY_DISABLED: "true"
 
