@@ -42,7 +42,7 @@ image: alpine:latest
 
 variables:
   # AUTO_DEVOPS_DOMAIN is the application deployment domain and should be set as a variable at the group or project level.
-  AUTO_DEVOPS_DOMAIN: kn.gc.aknapen.nl
+  AUTO_DEVOPS_DOMAIN: configure.me.example.com
 
   POSTGRES_USER: user
   POSTGRES_PASSWORD: testing-password
